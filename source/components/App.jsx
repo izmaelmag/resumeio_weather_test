@@ -1,26 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from './Header.jsx';
-import { Font, Color } from '../styles';
+import { Font, Color,  Animations } from '../styles';
 import { Grid, Cell } from "styled-css-grid";
 
 const $Container = styled(Grid)`
+  padding: 24px 0; 
   max-width: 992px;
   margin: 0 auto;
 `;
 
 const $Title = styled.h1`
   ${Font.title}
+  ${Animations.fadeIn(.5, .2)}
 
   color: ${Color.gray[500]};
-  margin-bottom: 16px;
-`
+  margin: 32px 0 16px;
+`;
 
 const $Subtitle = styled.div`
   ${Font.subtitle}
+  ${Animations.fadeIn(.5, .3)}
 
   color: ${Color.gray[400]};
-`
+`;
 
 export default class App extends React.Component {
   render() {
@@ -43,6 +46,6 @@ export default class App extends React.Component {
           cards
         </Cell>
       </$Container>
-    )
+    );
   }
 }

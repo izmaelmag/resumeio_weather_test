@@ -17,14 +17,14 @@ export const Font = {
   title: css`
     font-family: 'Merriweather', serif;
     font-size: 36px;
-    line-height: 1rem;
+    line-height: 1;
     font-weight: 400;
   `,
 
   subtitle: css`
     font-family: 'Merriweather', serif;
     font-size: 16px;
-    line-height: 1.5rem;
+    line-height: 1.5;
     font-weight: 400;
   `,
 
@@ -32,7 +32,7 @@ export const Font = {
     font-family: PT Root UI;
     font-weight: 400;
     font-size: 48px;
-    line-height: 1rem;
+    line-height: 1;
   `,
 
   caption: css`
@@ -41,34 +41,64 @@ export const Font = {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-size: 14px;
-    line-height: 1.43rem;
+    line-height: 1.43;
   `,
 
   label: css`
     font-family: PT Root UI;
     font-weight: 400;
     font-size: 14px;
-    line-height: 1.43rem;
+    line-height: 1.43;
   `,
 
   text: css`
     font-family: PT Root UI;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 1.43rem;
+    font-size: 16px;
+    line-height: 1.5;
   `,
 
   mark: css`
     font-family: PT Root UI;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.43rem;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+  `
+};
+
+export const Animations = {
+  fadeInTop: (t = 0.5, d = 0) => css`
+    transform: translateY(-10px);
+    opacity: 0;
+    animation: fadeInTop ${t}s ${d}s ease;
+    animation-fill-mode: forwards;
+  `,
+
+  fadeInBottom: (t = 0.5, d = 0) => css`
+    transform: translateY(10px);
+    opacity: 0;
+    animation: fadeInTop ${t}s ${d}s ease;
+    animation-fill-mode: forwards;
+  `,
+
+  fadeInLeft: (t = 0.5, d = 0) => css`
+    transform: translateY(-10px);
+    opacity: 0;
+    animation: fadeInTop ${t}s ${d}s ease;
+    animation-fill-mode: forwards;
+  `,
+
+  fadeIn: (t = 0.5, d = 0) => css`
+    opacity: 0;
+    animation: fadeIn ${t}s ${d}s ease;
+    animation-fill-mode: forwards;
   `
 };
 
 export const GlobalStyle = createGlobalStyle`
   body {
     background: ${Color.gray[200]};
+    margin: 0;
   }
 
   @font-face {
@@ -102,4 +132,45 @@ export const GlobalStyle = createGlobalStyle`
     src: url('./fonts/PTRootUIRegular.ttf') format('truetype'),
          url('./fonts/PTRootUIRegular.woff2') format('woff2');
   }
-`
+
+  @keyframes fadeIn {
+      0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes fadeInTop {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+`;

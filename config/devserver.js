@@ -11,14 +11,10 @@ new WebpackDevServer(webpack(devConfig), {
   compress: true,
   port: 8080,
   hot: true,
-  inline: true,
-
-  after: () => {
-    console.log('\033[2J');
-  }
+  inline: true
 }).listen(8080, '0.0.0.0', err => {
   if (err) {
-    console.error(err)
+    console.error(err);
   }
 
   console.log(`[WDS]: Server Running at http://localhost:8080`);
