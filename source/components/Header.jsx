@@ -1,8 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css }from 'styled-components';
-import Logo from '../assets/icons/logo_inner.svg';
+import Logo_svg from '../assets/icons/logo_inner.svg';
 import { Color } from '../styles';
 
+const Header = () => {
+  const [isMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  });
+
+  return(
+    <$Header isMounted={isMounted}>
+      <Logo_svg width='36px' height='36px' />
+    </$Header>
+  );
+};
+
+export default Header;
+
+//#region Styled components
 const $Header = styled.header`
   display: flex;
   align-items: center;
@@ -10,7 +27,7 @@ const $Header = styled.header`
   height: 48px;
 
   svg {
-    margin: 0 28px;
+    margin: 0 16px;
     position: relative;
     width: 36px;
     height: 36px;
@@ -20,12 +37,6 @@ const $Header = styled.header`
     border-radius: 50%;
     box-shadow: 0 0 0 5px ${Color.gray[200]}, 0 0 0 6px transparent;
     transition: transform .7s .1s cubic-bezier(0.19, 1, 0.22, 1), opacity .7s .1s ease, box-shadow .7s .25s ease;
-
-    &:hover {
-      opacity: 1;
-      transform: scale(1);
-      box-shadow: 0 0 0 5px ${Color.gray[200]}, 0 0 0 6px ${Color.purple};
-    }
   }
 
   &::before,
@@ -36,9 +47,6 @@ const $Header = styled.header`
     height: 1px;
     background: ${Color.gray[300]};
     transition: width .4s .5s ease;
-  }
-
-  &:before {
     transform-origin: 100% 50%;
   }
 
@@ -63,19 +71,4 @@ const $Header = styled.header`
     }
   ` : ''}
 `;
-
-const Header = () => {
-  const [isMounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  });
-
-  return(
-    <$Header isMounted={isMounted}>
-      <Logo width='36px' height='36px' />
-    </$Header>
-  );
-};
-
-export default Header;
+//#endregion

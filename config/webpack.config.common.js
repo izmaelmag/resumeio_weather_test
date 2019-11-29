@@ -20,6 +20,10 @@ const CommonConfig = {
     mergeDuplicateChunks: true
   },
 
+  resolve: {
+    extensions: ['.js', '.jsx', '.svg'],
+  },
+
   module: {
     rules: [
       {
