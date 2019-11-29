@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+
+  "parser": "babel-eslint",
+
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": true
+  },
+
+  "env": {
+    "browser": true
+  },
+
+  "rules": {
+    "semi": "error",
+    "no-undef": "off"
+  }
+}
