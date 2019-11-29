@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.development.js --watch",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.production.js",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --color --inline --config config/webpack.config.development.js --open",
+    "start": "cross-env NODE_ENV=development node ./config/devserver.js",
     "test": "jest"
   },
   "repository": {
@@ -44,6 +44,7 @@
     "react-dom": "^16.12.0",
     "react-styleguidist": "^10.2.1",
     "styled-components": "^5.0.0-rc.2",
+    "styled-css-grid": "^1.2.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"

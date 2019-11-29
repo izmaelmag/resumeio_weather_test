@@ -32,15 +32,6 @@ const CommonConfig = {
     ]
   },
 
-  devServer: {
-    contentBase: path.resolve(__dirname, '../build'),
-    publicPath: '/',
-    watchContentBase: true,
-    compress: true,
-    port: 8080,
-    hot: true,
-  },
-
   plugins: [
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, '../build/index.html'),

@@ -18,6 +18,5 @@
 
   "rules": {
     "semi": "error",
-    "no-undef": "off"
   }
 }
