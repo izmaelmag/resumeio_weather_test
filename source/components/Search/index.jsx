@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Color, Font } from '../../styles';
+import Results from './Results';
 
 const SearchForm = () => {
   const [searchText, setSearchText] = useState('');
@@ -11,10 +12,14 @@ const SearchForm = () => {
         value={searchText}
         type='text'
         placeholder='Search'
-        onInput={({ currentTarget }) => setSearchText(currentTarget.value)}
+        onChange={({ currentTarget }) => setSearchText(currentTarget.value)}
       />
 
       <$Search.button onClick={() => false} />
+
+      <$Search.results>
+        <Results />
+      </$Search.results>
     </$Search>
   );
 };
@@ -23,13 +28,14 @@ export default SearchForm;
 
 //#region Styled components
 const $Search = styled.form`
+  position: relative;
   max-width: calc(100% - 128px);
   width: 100%;
   display: flex;
   align-items: stretch;
   height: 48px;
   border-radius: 8px;
-  overflow: hidden;
+  z-index: 1;
 `;
 
 $Search.input = styled.input`
@@ -60,5 +66,19 @@ $Search.button = styled.button`
   &:focus {
     outline: none;
   }
+`;
+
+$Search.results = styled.div`
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 56px;
+  width: 100%;
+  height: auto;
+  max-height: 254px;
+  min-height: 84px;
+  background: ${Color.white};
+  border-radius: 8px;
+  box-shadow: 0 6px 12px ${Color.shadow};
 `;
 //#endregion

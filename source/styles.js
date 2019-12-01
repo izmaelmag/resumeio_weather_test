@@ -29,14 +29,14 @@ export const Font = {
   `,
 
   display: css`
-    font-family: PT Root UI;
+    font-family: 'Root', sans-serif;
     font-weight: 400;
     font-size: 48px;
     line-height: 1;
   `,
 
   caption: css`
-    font-family: PT Root UI;
+    font-family: 'RootMedium', sans-serif;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -45,21 +45,21 @@ export const Font = {
   `,
 
   label: css`
-    font-family: PT Root UI;
+    font-family: 'Root', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.43;
   `,
 
   text: css`
-    font-family: PT Root UI;
+    font-family: 'Root', sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
   `,
 
   mark: css`
-    font-family: PT Root UI;
+    font-family: 'RootBold', sans-serif;
     font-weight: 700;
     font-size: 16px;
     line-height: 1.5;
@@ -67,31 +67,35 @@ export const Font = {
 };
 
 export const Animations = {
-  fadeInTop: (t = 0.5, d = 0) => css`
+  fadeInTop: (t: number = 0.5, d: number = 0) => css`
     transform: translateY(-10px);
     opacity: 0;
     animation: fadeInTop ${t}s ${d}s ease;
     animation-fill-mode: forwards;
   `,
 
-  fadeInBottom: (t = 0.5, d = 0) => css`
+  fadeInBottom: (t: number = 0.5, d: number = 0) => css`
     transform: translateY(10px);
     opacity: 0;
-    animation: fadeInTop ${t}s ${d}s ease;
+    animation: fadeInBottom ${t}s ${d}s ease;
     animation-fill-mode: forwards;
   `,
 
-  fadeInLeft: (t = 0.5, d = 0) => css`
-    transform: translateY(-10px);
+  fadeInRight: (t: number = 0.5, d: number = 0) => css`
+    transform: translateX(-10px);
     opacity: 0;
-    animation: fadeInTop ${t}s ${d}s ease;
+    animation: fadeInRight ${t}s ${d}s ease;
     animation-fill-mode: forwards;
   `,
 
-  fadeIn: (t = 0.5, d = 0) => css`
+  fadeIn: (t: number = 0.5, d: number = 0) => css`
     opacity: 0;
     animation: fadeIn ${t}s ${d}s ease;
     animation-fill-mode: forwards;
+  `,
+
+  spin: (clockwise: boolean = true, t: number = 0.5) => css`
+    animation: ${clockwise ? 'spinClockwise' : 'spinAntiClockwise'} ${t}s linear infinite;
   `
 };
 
@@ -103,32 +107,24 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Merriweather';
-    font-weigth: 400;
-    font-style: normal;
     src: url('./fonts/Merriweather-Regular.ttf') format('truetype'),
          url('./fonts/Merriweather-Regular.woff2') format('woff2');
   }
 
   @font-face {
-    font-family: 'PT Root UI';
-    font-weigth: 700;
-    font-style: normal;
+    font-family: 'RootBold';
     src: url('./fonts/PTRootUIBold.ttf') format('truetype'),
          url('./fonts/PTRootUIBold.woff2') format('woff2');
   }
 
   @font-face {
-    font-family: 'PT Root UI';
-    font-weigth: 500;
-    font-style: normal;
+    font-family: 'RootMedium';
     src: url('./fonts/PTRootUIMedium.ttf') format('truetype'),
          url('./fonts/PTRootUIMedium.woff2') format('woff2');
   }
 
   @font-face {
-    font-family: 'PT Root UI';
-    font-weigth: 400;
-    font-style: normal;
+    font-family: 'Root';
     src: url('./fonts/PTRootUIRegular.ttf') format('truetype'),
          url('./fonts/PTRootUIRegular.woff2') format('woff2');
   }
@@ -171,6 +167,26 @@ export const GlobalStyle = createGlobalStyle`
     100% {
       opacity: 1;
       transform: translateX(0);
+    }
+  }
+
+  @keyframes spinClockwise {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spinAntiClockwise {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(-360deg);
     }
   }
 `;

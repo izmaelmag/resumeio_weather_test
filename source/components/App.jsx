@@ -4,58 +4,40 @@ import { Grid, Cell } from "styled-css-grid";
 
 import Header from './Header';
 import SearchForm from './Search';
-import CityCard from './CityCard';
+import CitiesList from './CitiesList';
 
 import { Font, Color, Animations } from '../styles';
 
-export default class App extends React.Component {
-  render() {
-    return(
-      <$Container columns={2} gap='32px' columnGap='24px'>
-        <Cell width={2}>
-          <Header />
-        </Cell>
+const App = () => {
+  return(
+    <$Container columns={2} gap='32px' columnGap='24px'>
+      <Cell width={2}>
+        <Header />
+      </Cell>
 
-        <$Cell_Title width={1}>
-          <$Title>Weather forecast</$Title>
-          <$Subtitle>Simple but powerful weather forcasting service based on OpenWeatherMap API</$Subtitle>
-        </$Cell_Title>
+      <$Cell_Title width={1}>
+        <$Title>Weather forecast</$Title>
+        <$Subtitle>Simple but powerful weather forcasting service based on OpenWeatherMap API</$Subtitle>
+      </$Cell_Title>
 
-        <$Cell_SearchForm width={1}>
-          <SearchForm />
-        </$Cell_SearchForm>
+      <$Cell_SearchForm width={1}>
+        <SearchForm />
+      </$Cell_SearchForm>
 
-        <Cell width={2}>
-          <$Cities columns={2} rowGap='24px' columnGap='32px'>
-            <Cell>
-              <CityCard />
-            </Cell>
-            <Cell>
-              <CityCard />
-            </Cell>
-            <Cell>
-              <CityCard />
-            </Cell>
-          </$Cities>
-        </Cell>
-      </$Container>
-    );
-  }
-}
+      <Cell width={2}>
+        <CitiesList />
+      </Cell>
+    </$Container>
+  );
+};
+
+export default App;
 
 //#region Styled Components
 const $Container = styled(Grid)`
   padding: 24px 0; 
   max-width: 992px;
   margin: 0 auto;
-`;
-
-const $Cities = styled(Grid)`
-  width: 100%;
-
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;    
-  }
 `;
 
 const $Title = styled.h1`
