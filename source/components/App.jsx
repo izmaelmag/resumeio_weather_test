@@ -2,24 +2,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from "styled-css-grid";
-
-import Header from './Header';
+import Header     from './Header';
 import SearchForm from './Search';
 import CitiesList from './CitiesList';
-import { CityT } from './CityCard';
-
 import { Font, Color, Animations, Media } from '../styles';
 import { defaultWeatherData } from '../data';
+import type { AppProviderValuesT, CityT, AppState } from '../typeDefs';
 
-export const AppContext = React.createContext();
+export const AppContext = React.createContext<AppProviderValuesT>({
+  cities: [],
+  removeCity: () => {return;},
+  addCity: () => {return;},
+});
 
-export type providerValuesT = {
-  cities: CityT[],
-  removeCity: (cityId: number) => void,
-  addCity: (newCity: CityT) => void
-}
-
-class App extends React.Component {
+class App extends React.Component<{}, AppState> {
   state = {
     cities: defaultWeatherData.cities
   }
@@ -30,7 +26,7 @@ class App extends React.Component {
     this.setState({ cities });
   }
 
-  isCitySelected = (id) => this.state.cities.filter(city => city.id === id).length
+  isCitySelected = (id: number): boolean => !!this.state.cities.filter(city => city.id === id).length
 
   addCity = (newCity: CityT) => {
     if (!this.isCitySelected(newCity.id)) {
@@ -41,7 +37,7 @@ class App extends React.Component {
   }
 
   render() {
-    const providerValue: providerValuesT = {
+    const providerValue: AppProviderValuesT = {
       cities: this.state.cities,
       removeCity: this.removeCity,
       addCity: this.addCity

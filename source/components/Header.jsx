@@ -1,3 +1,4 @@
+//@flow
 import React, { useState, useEffect } from 'react';
 import styled, { css }from 'styled-components';
 import Logo_svg from '../assets/icons/logo_inner.svg';

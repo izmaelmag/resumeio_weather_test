@@ -1,9 +1,10 @@
+//@flow
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Color, Font, Animations, Media } from '../../styles';
 import Results from './Results';
 import { searchDataMock } from '../../data'; 
-import { CityT } from '../CityCard';
+import type { CityT } from '../../typeDefs';
 import SearchIcon from '../../assets/icons/search.svg';
 
 const SearchForm = () => {

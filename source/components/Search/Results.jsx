@@ -1,15 +1,10 @@
+//@flow
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ResultCard from './ResultCard';
 import Spinner from '../Spinner'; 
-import { CityT } from '../CityCard';
+import type { SearchResultsProps } from '../../typeDefs';
 import { Animations } from '../../styles';
-
-type SearchResultsProps = {
-  cities: CityT[],
-  searchText: string,
-  onSelect: () => void
-}
 
 const Results = ({ cities, searchText, onSelect }: SearchResultsProps) => {
   const [isLoading, setLoadingState] = useState(true);
@@ -25,7 +20,11 @@ const Results = ({ cities, searchText, onSelect }: SearchResultsProps) => {
   }
 
   if (cities && cities.length) {
-    return cities.map(city => <ResultCard key={city.id} city={city} onSelect={onSelect} />);
+    return (
+      <>
+        {cities.map(city => <ResultCard key={city.id} city={city} onSelect={onSelect} />)}
+      </>
+    );
   }
 
   return(

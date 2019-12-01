@@ -3,11 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Color, Font, Animations, Media } from '../styles';
 import { DetailTypesIcons, DetailTypesMeasures } from '../constants';
-
-type WeatherDetailProps = {
-  type: string,
-  value: string | number
-};
+import type { WeatherDetailProps } from '../typeDefs';
 
 const WeatherDetail = ({ type, value }: WeatherDetailProps) => {
   const Icon = DetailTypesIcons[type];

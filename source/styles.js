@@ -1,13 +1,14 @@
+//@flow
 import { css, createGlobalStyle } from 'styled-components';
 
 export const Media = {
-  mobile: (cssSnippet) => css`
+  mobile: (cssSnippet: string[]) => css`
     @media screen and (max-width: 767px) {
       ${cssSnippet}
     }
   `,
 
-  tablet: (cssSnippet) => css`
+  tablet: (cssSnippet: string[]) => css`
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       ${cssSnippet}
     }
@@ -19,11 +20,11 @@ export const Color = {
   white: '#ffffff',
   purple: '#730641',
   gray: {
-    100: '#fafaf9',
-    200: '#e4e0df',
-    300: '#d6d2d1',
-    400: '#8e8b8b',
-    500: '#272525',
+    '100': '#fafaf9',
+    '200': '#e4e0df',
+    '300': '#d6d2d1',
+    '400': '#8e8b8b',
+    '500': '#272525',
   },
 };
 
@@ -144,6 +145,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: ${Color.gray[200]};
     margin: 0;
+    -webkit-font-smoothing: antialiased;
   }
 
   @keyframes fadeIn {
@@ -200,22 +202,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   @keyframes spinClockwise {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes spinAntiClockwise {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(-360deg);
-    }
+    0%   { transform: rotate(0deg);   }
+    100% { transform: rotate(360deg); }
   }
 `;

@@ -4,21 +4,20 @@ import styled from 'styled-components';
 import CityCard from './CityCard';
 import { Grid, Cell } from 'styled-css-grid';
 import { Media } from '../styles';
-import { AppContext, providerValuesT } from './App';
+import { AppContext } from './App';
+import type { AppProviderValuesT } from '../typeDefs';
 
-export default class CitiesList extends React.Component {
+export default class CitiesList extends React.Component<{}> {
   render() {
     return(
       <$Cities columns={2} rowGap='24px' columnGap='32px'>
         <AppContext.Consumer>
           {
-            ({ cities }: providerValuesT) => {
-              return cities.map(city => (
-                <$Cell_City key={city.id}>
-                  <CityCard {...city} />
-                </$Cell_City>
-              ));
-            }
+            ({ cities }: AppProviderValuesT) => cities.map(city => (
+              <$Cell_City key={city.id}>
+                <CityCard {...city} />
+              </$Cell_City>
+            ))
           }
         </AppContext.Consumer>
       </$Cities>
@@ -26,6 +25,7 @@ export default class CitiesList extends React.Component {
   }
 }
 
+//#region Styled components
 const $Cities = styled(Grid)`
   width: 100%;
 
@@ -44,3 +44,4 @@ const $Cell_City = styled(Cell)`
     grid-column-end: span 2;
   `}
 `;
+//#endregion

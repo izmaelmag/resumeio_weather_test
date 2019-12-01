@@ -1,6 +1,8 @@
+//@flow
 import uuid from 'uuid';
+import type { CityT } from './typeDefs';
 
-export const LondonData = {
+export const LondonData: CityT = {
   id: uuid(),
   location: {
     lat: 24.129,
@@ -18,7 +20,7 @@ export const LondonData = {
   }
 };
 
-export const AmsterdamData = {
+export const AmsterdamData: CityT = {
   id: uuid(),
   location: {
     lat: 37.129,
@@ -36,7 +38,7 @@ export const AmsterdamData = {
   }
 };
 
-export const MoscowData = {
+export const MoscowData: CityT = {
   id: uuid(),
   location: {
     lat: -10.129,
@@ -54,7 +56,7 @@ export const MoscowData = {
   }
 };
 
-export const TokyoData = {
+export const TokyoData: CityT = {
   id: uuid(),
   location: {
     lat: 75.129,
@@ -72,7 +74,7 @@ export const TokyoData = {
   }
 };
 
-export const MonacoData = {
+export const MonacoData: CityT = {
   id: uuid(),
   location: {
     lat: 65.129,
@@ -90,7 +92,7 @@ export const MonacoData = {
   }
 };
 
-export const NewYorkData = {
+export const NewYorkData: CityT = {
   id: uuid(),
   location: {
     lat: -55.689,
@@ -108,7 +110,7 @@ export const NewYorkData = {
   }
 };
 
-export const searchDataMock = [
+export const searchDataMock: CityT[] = [
   LondonData,
   AmsterdamData,
   MoscowData,

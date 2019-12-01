@@ -1,4 +1,5 @@
 
+//@flow
 import React from 'react';
 import styled from 'styled-components';
 import { Animations } from '../styles';
@@ -10,6 +11,8 @@ const Spinner = () => (
   </$Spinner>
 );
 
+export default Spinner;
+
 const $Spinner = styled.div`
   ${Animations.spin(true, 0.6)}
   display: flex;
@@ -18,5 +21,3 @@ const $Spinner = styled.div`
   width: 24px;
   height: 24px;
 `;
-
-export default Spinner;

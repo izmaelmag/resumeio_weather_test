@@ -1,41 +1,34 @@
 //@flow
 import React from 'react';
 import styled from 'styled-components';
-import CityT from '../CityCard';
+import type { ResultCardProps } from '../../typeDefs';
 import AddIcon from '../../assets/icons/add.svg';
 import { Color, Font, Animations, Media } from '../../styles';
 import { AppContext } from '../App';
 
-type ResultCardProps = {
-  city: CityT,
-  onSelect: () => void
-}
-
-const ResultCard = ({ city, onSelect }: ResultCardProps) => {
-  return(
-    <AppContext.Consumer>
-      {
-        ({ addCity }) => (
-          <>
-            <$ResultCard onClick={() => {
-              addCity(city);
-              onSelect();
-            }}>
-              <div>
-                <strong>{city.name}</strong>
-                <span>{city.location.lat},&nbsp;{city.location.lng}</span>
-              </div>
-        
-              <$ResultCard.button>
-                <AddIcon />
-              </$ResultCard.button>
-            </$ResultCard>
-          </>
-        )
-      }
-    </AppContext.Consumer>
-  );
-};
+const ResultCard = ({ city, onSelect }: ResultCardProps) => (
+  <AppContext.Consumer>
+    {
+      ({ addCity }) => (
+        <>
+          <$ResultCard onClick={() => {
+            addCity(city);
+            onSelect();
+          }}>
+            <div>
+              <strong>{city.name}</strong>
+              <span>{city.location.lat},&nbsp;{city.location.lng}</span>
+            </div>
+      
+            <$ResultCard.button>
+              <AddIcon />
+            </$ResultCard.button>
+          </$ResultCard>
+        </>
+      )
+    }
+  </AppContext.Consumer>
+);
 
 export default ResultCard;
 

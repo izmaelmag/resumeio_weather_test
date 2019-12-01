@@ -4,33 +4,14 @@ import styled from 'styled-components';
 import { Color, Font, Animations, Media } from '../styles';
 import DeleteButton from './DeleteButton';
 import WeatherDetail from './WeatherDetail';
-import { AppContext, providerValuesT } from './App';
+import { AppContext } from './App';
+import type { AppProviderValuesT, CityT } from '../typeDefs';
 import CloudsIcon from '../assets/icons/clouds.png';
-
-console.log(CloudsIcon);
-
-export type CityT = {
-  id: number,
-  name: string,
-  location: {
-    lat: number,
-    lng: number
-  },
-  weather: {
-    humidity: number,
-    pressure: number,
-    clouds: string,
-    wind: number,
-    temperature: {
-      celsium: number
-    }
-  }
-};
 
 const CityCard = ({ id, name, weather }: CityT) => {
   const [isUnmounting, setUnmountingState] = useState(false);
 
-  const unmountAnimation = (removeCallback) => {
+  const unmountAnimation = (removeCallback: (id: number) => void) => {
     setUnmountingState(true);
 
     setTimeout(() => removeCallback(id), 550);
@@ -39,15 +20,18 @@ const CityCard = ({ id, name, weather }: CityT) => {
   return(
     <AppContext.Consumer>
       {
-        ({ removeCity }: providerValuesT) => (
+        ({ removeCity }: AppProviderValuesT) => (
           <$Card isUnmounting={isUnmounting}>
             <$Card.main>
               <DeleteButton onClick={() => unmountAnimation(removeCity)} />
+
               <$CityName>{name}</$CityName>
+
               <$Temperature>
                 {weather.temperature.celsium}°C
                 <img src={CloudsIcon} alt={weather.clouds} />
               </$Temperature>
+
               <$Clouds>{weather.clouds}</$Clouds>
             </$Card.main>
       
