@@ -61,7 +61,7 @@ export default SearchForm;
 //#region Styled components
 const $Search = styled.form`
   position: relative;
-  max-width: calc(100% - 128px);
+  max-width: calc(100% - 133px);
   width: 100%;
   display: flex;
   align-items: stretch;

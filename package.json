@@ -4,9 +4,9 @@
   "description": "Resume.io Weather test app",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.development.js --watch",
+    "dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.development.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.production.js",
-    "start": "cross-env NODE_ENV=development node ./config/devserver.js",
+    "start": "cross-env NODE_ENV=development yarn dev && node ./config/devserver.js",
     "test": "jest"
   },
   "repository": {
@@ -47,6 +47,7 @@
     "react-svg-loader": "^3.0.3",
     "styled-components": "^5.0.0-rc.2",
     "styled-css-grid": "^1.2.1",
+    "url-loader": "^3.0.0",
     "uuid": "^3.3.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",

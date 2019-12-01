@@ -5,6 +5,9 @@ import { Color, Font, Animations } from '../styles';
 import DeleteButton from './DeleteButton';
 import WeatherDetail from './WeatherDetail';
 import { AppContext, providerValuesT } from './App';
+import CloudsIcon from '../assets/icons/clouds.png';
+
+console.log(CloudsIcon);
 
 export type CityT = {
   id: number,
@@ -41,7 +44,10 @@ const CityCard = ({ id, name, weather }: CityT) => {
             <$Card.main>
               <DeleteButton onClick={() => unmountAnimation(removeCity)} />
               <$CityName>{name}</$CityName>
-              <$Temperature>{weather.temperature.celsium}°C</$Temperature>
+              <$Temperature>
+                {weather.temperature.celsium}°C
+                <img src={CloudsIcon} alt={weather.clouds} />
+              </$Temperature>
               <$Clouds>{weather.clouds}</$Clouds>
             </$Card.main>
       
@@ -65,7 +71,7 @@ const $Card = styled.div`
 
   position: relative;
   background: ${Color.white};
-  border-radius: 16px;
+  border-radius: 24px;
 `;
 
 $Card.main = styled.div`
@@ -96,8 +102,14 @@ const $Temperature = styled.span`
   ${Font.display}
   ${Animations.fadeInTop()}
 
+  display: flex;
+  align-items: center;
   color: ${Color.gray[500]};
   margin-bottom: 4px;
+
+  img {
+    margin-left: 16px;
+  }
 `;
 
 const $Clouds = styled.span`

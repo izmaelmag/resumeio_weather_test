@@ -120,7 +120,7 @@ export const searchDataMock = [
 export const defaultWeatherData = {
   cities: [
     LondonData,
-    AmsterdamData,
     MoscowData,
+    AmsterdamData,
   ]
 };

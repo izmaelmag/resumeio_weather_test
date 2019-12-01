@@ -36,7 +36,7 @@ const $WeatherDetail = styled.div`
 
   display: flex;
   align-items: center;
-  margin-right: 32px;
+  margin-right: 31px;
 
   span {
     margin-left: 4px;

@@ -22,7 +22,7 @@ const $Delete = styled.button`
   background: ${Color.white};
   position: absolute;
   top: 24px;
-  right: 32px;
+  right: 24px;
   width: 48px;
   height: 48px;
   border-radius: 50%;

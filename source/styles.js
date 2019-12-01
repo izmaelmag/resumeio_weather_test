@@ -38,7 +38,7 @@ export const Font = {
   caption: css`
     font-family: 'RootMedium', sans-serif;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
     font-size: 14px;
     line-height: 1.43;

@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'Merriweather';
-  src: url('./Merriweather-Regular.woff2') format('woff2');
+  src: url('./fonts/Merriweather-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'RootBold';
-  src: url('./PTRootUIBold.woff2') format('woff2');
+  src: url('./fonts/PTRootUIBold.woff2') format('woff2');
 }
 
 @font-face {
@@ -15,5 +15,5 @@
 
 @font-face {
   font-family: 'Root';
-  src: url('./PTRootUIRegular.woff2') format('woff2');
+  src: url('./fonts/PTRootUIRegular.woff2') format('woff2');
 }

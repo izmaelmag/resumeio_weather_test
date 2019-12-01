@@ -47,7 +47,16 @@ const CommonConfig = {
             }
           }
         ]
-      }
+      },
+
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader'
+          },
+        ],
+      },
     ]
   },
 
