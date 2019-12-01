@@ -12,7 +12,9 @@ const Spinner = () => (
 
 const $Spinner = styled.div`
   ${Animations.spin(true, 0.6)}
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
 `;

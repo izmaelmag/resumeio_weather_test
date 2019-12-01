@@ -1,7 +1,7 @@
 //@flow
 import React from 'react';
 import styled from 'styled-components';
-import { Color } from '../styles';
+import { Color, Media } from '../styles';
 import DeleteIcon from '../assets/icons/delete.svg';
 
 type DeleteButtonProps = {
@@ -43,5 +43,15 @@ const $Delete = styled.button`
       transition: fill .4s ease;
     }
   }
+
+  ${Media.tablet`
+    top: 20px;
+    right: 20px;
+  `}
+
+  ${Media.mobile`
+    top: 16px;
+    right: 16px;
+  `}
 `;
 //#endregion

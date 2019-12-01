@@ -8,7 +8,7 @@ import SearchForm from './Search';
 import CitiesList from './CitiesList';
 import { CityT } from './CityCard';
 
-import { Font, Color, Animations } from '../styles';
+import { Font, Color, Animations, Media } from '../styles';
 import { defaultWeatherData } from '../data';
 
 export const AppContext = React.createContext();
@@ -34,7 +34,7 @@ class App extends React.Component {
 
   addCity = (newCity: CityT) => {
     if (!this.isCitySelected(newCity.id)) {
-      const cities = [...this.state.cities, newCity];
+      const cities = [newCity, ...this.state.cities];
   
       this.setState({ cities });
     }
@@ -76,9 +76,19 @@ export default App;
 
 //#region Styled Components
 const $Container = styled(Grid)`
-  padding: 24px 0; 
+  padding: 24px; 
   max-width: 992px;
   margin: 0 auto;
+
+  ${Media.tablet`
+    padding: 16px 20px;
+    grid-row-gap: 20px;
+  `}
+
+  ${Media.mobile`
+    padding: 8px 16px;
+    grid-row-gap: 16px;
+  `}
 `;
 
 const $Title = styled.h1`
@@ -101,15 +111,15 @@ const $Cell_SearchForm = styled(Cell)`
   align-items: flex-end;
   justify-content: flex-end;
 
-  @media (max-width: 800px) {
+  ${Media.mobile`
     grid-column-end: span 2;
     justify-content: flex-start; 
-  }
+  `}
 `;
 
 const $Cell_Title = styled(Cell)`
-  @media (max-width: 800px) {
-    grid-column-end: span 2;    
-  }
+  ${Media.mobile`
+    grid-column-end: span 2;
+  `}
 `;
 //#endregion

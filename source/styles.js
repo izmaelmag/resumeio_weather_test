@@ -1,5 +1,19 @@
 import { css, createGlobalStyle } from 'styled-components';
 
+export const Media = {
+  mobile: (cssSnippet) => css`
+    @media screen and (max-width: 767px) {
+      ${cssSnippet}
+    }
+  `,
+
+  tablet: (cssSnippet) => css`
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      ${cssSnippet}
+    }
+  `
+};
+
 export const Color = {
   shadow: 'rgba(28, 7, 19, 0.1)',
   white: '#ffffff',
@@ -19,6 +33,10 @@ export const Font = {
     font-size: 36px;
     line-height: 1;
     font-weight: 400;
+
+    ${Media.mobile`
+      font-size: 28px;
+    `}
   `,
 
   subtitle: css`
@@ -26,6 +44,10 @@ export const Font = {
     font-size: 16px;
     line-height: 1.5;
     font-weight: 400;
+
+    ${Media.tablet`
+      font-size: 16px;
+    `}
   `,
 
   display: css`
@@ -33,6 +55,14 @@ export const Font = {
     font-weight: 400;
     font-size: 48px;
     line-height: 1;
+
+    ${Media.tablet`
+      font-size: 40px;
+    `}
+
+    ${Media.mobile`
+      font-size: 32px;
+    `}
   `,
 
   caption: css`
@@ -42,6 +72,10 @@ export const Font = {
     text-transform: uppercase;
     font-size: 14px;
     line-height: 1.43;
+
+    ${Media.mobile`
+      font-size: 12px;
+    `}
   `,
 
   label: css`

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ResultCard from './ResultCard';
 import Spinner from '../Spinner'; 
 import { CityT } from '../CityCard';
-import { Font } from '../../styles';
+import { Font, Animations } from '../../styles';
 
 type SearchResultsProps = {
   cities: CityT[],
@@ -15,9 +15,7 @@ const Results = ({ cities, searchText, onSelect }: SearchResultsProps) => {
   const [isLoading, setLoadingState] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoadingState(false);
-    }, 1000);
+    setTimeout(() => setLoadingState(false), 1000);
   });
 
   if (isLoading) {
@@ -36,8 +34,10 @@ const Results = ({ cities, searchText, onSelect }: SearchResultsProps) => {
 
   return(
     <$Results>
-      <strong>City called “{searchText}” was not found</strong>
-      <span>Try different city name</span>
+      <$NoResults>
+        <strong>City called “{searchText}” was not found</strong>
+        <span>Try different city name</span>
+      </$NoResults>
     </$Results>
   );
 };
@@ -46,10 +46,13 @@ export default Results;
 
 //#region Styled components
 const $Results = styled.div`
+  ${Animations.fadeIn(0.3, 0.1)}
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  align-self: stretch;
   flex-grow: 1;
   border-radius: 8px;
 
@@ -59,6 +62,15 @@ const $Results = styled.div`
 
   span {
     ${Font.label}
+  }
+`;
+
+const $NoResults = styled.div`
+  padding: 8px 16px;
+  text-align: center;
+  
+  strong {
+    display: block;
   }
 `;
 //#endregion

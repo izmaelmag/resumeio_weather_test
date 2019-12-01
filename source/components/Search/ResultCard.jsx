@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CityT from '../CityCard';
 import AddIcon from '../../assets/icons/add.svg';
-import { Color, Font } from '../../styles';
+import { Color, Font, Animations } from '../../styles';
 import { AppContext } from '../App';
 
 type ResultCardProps = {
@@ -41,8 +41,11 @@ export default ResultCard;
 
 //#region Styled components
 const $ResultCard = styled.div`
+  ${Animations.fadeInRight(0.2)}
+
   position: relative;
   display: flex;
+  flex=flex-shrink: 0;
   width: 100%;
   align-items: center;
   justify-content: space-between;

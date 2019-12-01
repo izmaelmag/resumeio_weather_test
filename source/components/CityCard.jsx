@@ -1,7 +1,7 @@
 //@flow
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Color, Font, Animations } from '../styles';
+import { Color, Font, Animations, Media } from '../styles';
 import DeleteButton from './DeleteButton';
 import WeatherDetail from './WeatherDetail';
 import { AppContext, providerValuesT } from './App';
@@ -72,12 +72,28 @@ const $Card = styled.div`
   position: relative;
   background: ${Color.white};
   border-radius: 24px;
+
+  ${Media.tablet`
+    border-radius: 16px;
+  `}
+
+  ${Media.mobile`
+    border-radius: 12px;
+  `}
 `;
 
 $Card.main = styled.div`
   display: flex;
   flex-direction: column;
   padding: 24px 104px 32px 32px;
+
+  ${Media.tablet`
+    padding: 20px 80px 20px 20px;
+  `}
+
+  ${Media.mobile`
+    padding: 16px 80px 16px 20px;
+  `}
 `;
 
 $Card.details = styled.div`
@@ -88,6 +104,10 @@ $Card.details = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  ${Media.tablet`
+    padding: 20px;
+  `}
 `;
 
 const $CityName = styled.span`
@@ -96,6 +116,14 @@ const $CityName = styled.span`
 
   color: ${Color.purple};
   margin-bottom: 20px;
+
+  ${Media.tablet`
+    margin-bottom: 16px;
+  `}
+
+  ${Media.mobile`
+    margin-bottom: 8px;
+  `}
 `;
 
 const $Temperature = styled.span`
@@ -109,6 +137,10 @@ const $Temperature = styled.span`
 
   img {
     margin-left: 16px;
+
+    ${Media.mobile`
+      height: 40px;
+    `}
   }
 `;
 

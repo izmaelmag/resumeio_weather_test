@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Color, Font } from '../../styles';
+import { Color, Font, Animations, Media } from '../../styles';
 import Results from './Results';
 import { searchDataMock } from '../../data'; 
 import { CityT } from '../CityCard';
@@ -60,14 +60,22 @@ export default SearchForm;
 
 //#region Styled components
 const $Search = styled.form`
+  ${Animations.fadeInBottom(0.6, 0.1)}
+
   position: relative;
   max-width: calc(100% - 133px);
+  min-width: 300px;
   width: 100%;
   display: flex;
   align-items: stretch;
   height: 48px;
   border-radius: 8px;
   z-index: 1;
+
+  ${Media.mobile`
+    width: 100%;
+    max-width: 100%;
+  `}
 `;
 
 $Search.input = styled.input`
@@ -108,7 +116,11 @@ $Search.button = styled.button`
 `;
 
 $Search.results = styled.div`
+  ${Animations.fadeInTop(0.7)}
+
   position: absolute;
+  display: flex;
+  flex-direction: column;
   right: 0;
   top: 56px;
   width: 100%;
@@ -140,5 +152,10 @@ $Search.results = styled.div`
       background: ${Color.purple};
     }
   }
+
+  ${Media.mobile`
+    width: calc(100% + 16px);
+    left: -8px;
+  `}
 `;
 //#endregion
