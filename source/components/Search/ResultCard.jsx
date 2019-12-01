@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CityT from '../CityCard';
 import AddIcon from '../../assets/icons/add.svg';
-import { Color, Font, Animations } from '../../styles';
+import { Color, Font, Animations, Media } from '../../styles';
 import { AppContext } from '../App';
 
 type ResultCardProps = {
@@ -41,11 +41,11 @@ export default ResultCard;
 
 //#region Styled components
 const $ResultCard = styled.div`
-  ${Animations.fadeInRight(0.2)}
+  ${Animations.fadeIn(0.2)}
 
   position: relative;
   display: flex;
-  flex=flex-shrink: 0;
+  flex-shrink: 0;
   width: 100%;
   align-items: center;
   justify-content: space-between;
@@ -54,6 +54,10 @@ const $ResultCard = styled.div`
   cursor: pointer;
   background: ${Color.white};
   transition: background-color .3s ease;
+
+  ${Media.mobile`
+    padding: 16px;
+  `}
 
   strong {
     ${Font.mark}
@@ -85,6 +89,11 @@ const $ResultCard = styled.div`
     height: 1px;
     background: ${Color.gray[200]};
     width: calc(100% - 48px);
+
+    ${Media.mobile`
+      width: 100%;
+      left: 0;
+    `}
   }
 `;
 

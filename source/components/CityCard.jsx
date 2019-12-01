@@ -108,6 +108,10 @@ $Card.details = styled.div`
   ${Media.tablet`
     padding: 20px;
   `}
+
+  ${Media.mobile`
+    padding: 16px 20px;
+  `}
 `;
 
 const $CityName = styled.span`

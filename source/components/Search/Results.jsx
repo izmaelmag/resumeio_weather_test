@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ResultCard from './ResultCard';
 import Spinner from '../Spinner'; 
 import { CityT } from '../CityCard';
-import { Font, Animations } from '../../styles';
+import { Animations } from '../../styles';
 
 type SearchResultsProps = {
   cities: CityT[],
@@ -25,11 +25,7 @@ const Results = ({ cities, searchText, onSelect }: SearchResultsProps) => {
   }
 
   if (cities && cities.length) {
-    return (
-      <$Results>
-        { cities.map(city => <ResultCard key={city.id} city={city} onSelect={onSelect} />) }
-      </$Results>
-    );
+    return cities.map(city => <ResultCard key={city.id} city={city} onSelect={onSelect} />);
   }
 
   return(
@@ -52,17 +48,8 @@ const $Results = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  align-self: stretch;
   flex-grow: 1;
   border-radius: 8px;
-
-  strong {
-    ${Font.mark}
-  }
-
-  span {
-    ${Font.label}
-  }
 `;
 
 const $NoResults = styled.div`

@@ -130,7 +130,15 @@ $Search.results = styled.div`
   background: ${Color.white};
   border-radius: 8px;
   box-shadow: 0 6px 12px ${Color.shadow};
-  overflow: auto; 
+  overflow: auto;
+
+  strong {
+    ${Font.mark}
+  }
+
+  span {
+    ${Font.label}
+  }
 
   ::-webkit-scrollbar {
     width: 1px;

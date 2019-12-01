@@ -45,5 +45,13 @@ const $WeatherDetail = styled.div`
   &:last-of-type {
     margin-right: 0;
   }
+
+  ${Media.mobile`
+    margin-right: 16px;
+    
+    span {
+      font-size: 14px;
+    }
+  `}
 `;
 //#endregion
