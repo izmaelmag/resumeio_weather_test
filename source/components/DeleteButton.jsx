@@ -32,6 +32,11 @@ const $Delete = styled.button`
   justify-content: center;
   cursor: pointer;
 
+  &:focus {
+    outline: none;
+  }
+
+  &:focus,
   &:hover {
     svg path {
       fill: ${Color.purple};

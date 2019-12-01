@@ -2,24 +2,56 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Color, Font } from '../../styles';
 import Results from './Results';
+import { searchDataMock } from '../../data'; 
+import { CityT } from '../CityCard';
+import SearchIcon from '../../assets/icons/search.svg';
 
 const SearchForm = () => {
+  const [citiesList, setCitiesList] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [isResultsVisible, setResultsVisibility] = useState(false);
+
+  const filterSearch = () => {
+    if (searchText) {
+      setResultsVisibility(true);
+    }
+
+    const cities = searchDataMock.filter((city: CityT) => {
+      return city.name.toLowerCase().includes(searchText.toLowerCase());
+    });
+
+    setCitiesList(cities);
+  };
+
+  const handleInputChange = ({ currentTarget }) => {
+    setSearchText(currentTarget.value);
+    setResultsVisibility(false);
+  };
 
   return(
-    <$Search>
+    <$Search onSubmit={(e) => e.preventDefault()}>
       <$Search.input
         value={searchText}
         type='text'
         placeholder='Search'
-        onChange={({ currentTarget }) => setSearchText(currentTarget.value)}
+        onChange={handleInputChange}
       />
 
-      <$Search.button onClick={() => false} />
+      <$Search.button onClick={filterSearch}>
+        <SearchIcon />
+      </$Search.button>
 
-      <$Search.results>
-        <Results />
-      </$Search.results>
+      {
+        (searchText && isResultsVisible) && (
+          <$Search.results>
+            <Results
+              onSelect={() => setSearchText('')}
+              searchText={searchText}
+              cities={citiesList}
+            />
+          </$Search.results>
+        )
+      }
     </$Search>
   );
 };
@@ -62,14 +94,20 @@ $Search.button = styled.button`
   flex-shrink: 0;
   background: ${Color.purple};
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:focus {
     outline: none;
   }
+
+  svg path {
+    fill: ${Color.white};
+  }
 `;
 
 $Search.results = styled.div`
-  display: flex;
   position: absolute;
   right: 0;
   top: 56px;
@@ -80,5 +118,27 @@ $Search.results = styled.div`
   background: ${Color.white};
   border-radius: 8px;
   box-shadow: 0 6px 12px ${Color.shadow};
+  overflow: auto; 
+
+  ::-webkit-scrollbar {
+    width: 1px;
+    height: 100%;
+    opacity: 0;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: transparent};
+    transition: all .3s ease;
+  }
+
+  &:hover {
+    ::-webkit-scrollbar-thumb {
+      background: ${Color.purple};
+    }
+  }
 `;
 //#endregion

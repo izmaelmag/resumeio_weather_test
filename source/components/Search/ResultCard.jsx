@@ -1,21 +1,39 @@
+//@flow
 import React from 'react';
 import styled from 'styled-components';
 import CityT from '../CityCard';
 import AddIcon from '../../assets/icons/add.svg';
 import { Color, Font } from '../../styles';
+import { AppContext } from '../App';
 
-const ResultCard = ({ name, location }: CityT) => {
+type ResultCardProps = {
+  city: CityT,
+  onSelect: () => void
+}
+
+const ResultCard = ({ city, onSelect }: ResultCardProps) => {
   return(
-    <$ResultCard>
-      <div>
-        <strong>London</strong>
-        <span>42.87823, 13.68274</span>
-      </div>
-
-      <$ResultCard.button>
-        <AddIcon />
-      </$ResultCard.button>
-    </$ResultCard>
+    <AppContext.Consumer>
+      {
+        ({ addCity }) => (
+          <>
+            <$ResultCard onClick={() => {
+              addCity(city);
+              onSelect();
+            }}>
+              <div>
+                <strong>{city.name}</strong>
+                <span>{city.location.lat},&nbsp;{city.location.lng}</span>
+              </div>
+        
+              <$ResultCard.button>
+                <AddIcon />
+              </$ResultCard.button>
+            </$ResultCard>
+          </>
+        )
+      }
+    </AppContext.Consumer>
   );
 };
 
@@ -23,6 +41,7 @@ export default ResultCard;
 
 //#region Styled components
 const $ResultCard = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
   align-items: center;
@@ -45,12 +64,24 @@ const $ResultCard = styled.div`
     transition: color .3s ease;
   }
 
+  &:focus-within,
   &:hover {
     background: ${Color.gray[100]};
 
     strong, span {
       color: ${Color.purple};
     }
+  }
+
+  &:not(:last-child)::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    height: 1px;
+    background: ${Color.gray[200]};
+    width: calc(100% - 48px);
   }
 `;
 
@@ -65,11 +96,8 @@ $ResultCard.button = styled.button`
   cursor: pointer;
   padding: 0;
 
-  &:hover {
-    svg path {
-      transition: fill .3s ease;
-      fill: ${Color.gray[500]};
-    }
+  &:focus {
+    outline: none;
   }
 `;
 //#endregion

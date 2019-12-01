@@ -81,6 +81,13 @@ export const Animations = {
     animation-fill-mode: forwards;
   `,
 
+  fadeOutBottom: (t: number = 0.5, d: number = 0) => css`
+    transform: translateY(0px);
+    opacity: 1;
+    animation: fadeOutBottom ${t}s ${d}s ease;
+    animation-fill-mode: forwards;
+  `,
+
   fadeInRight: (t: number = 0.5, d: number = 0) => css`
     transform: translateX(-10px);
     opacity: 0;
@@ -103,30 +110,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: ${Color.gray[200]};
     margin: 0;
-  }
-
-  @font-face {
-    font-family: 'Merriweather';
-    src: url('./fonts/Merriweather-Regular.ttf') format('truetype'),
-         url('./fonts/Merriweather-Regular.woff2') format('woff2');
-  }
-
-  @font-face {
-    font-family: 'RootBold';
-    src: url('./fonts/PTRootUIBold.ttf') format('truetype'),
-         url('./fonts/PTRootUIBold.woff2') format('woff2');
-  }
-
-  @font-face {
-    font-family: 'RootMedium';
-    src: url('./fonts/PTRootUIMedium.ttf') format('truetype'),
-         url('./fonts/PTRootUIMedium.woff2') format('woff2');
-  }
-
-  @font-face {
-    font-family: 'Root';
-    src: url('./fonts/PTRootUIRegular.ttf') format('truetype'),
-         url('./fonts/PTRootUIRegular.woff2') format('woff2');
   }
 
   @keyframes fadeIn {
@@ -155,6 +138,18 @@ export const GlobalStyle = createGlobalStyle`
     100% {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOutBottom {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(10px);
     }
   }
 

@@ -1,12 +1,18 @@
 //@flow
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Color, Font, Animations } from '../styles';
 import DeleteButton from './DeleteButton';
 import WeatherDetail from './WeatherDetail';
+import { AppContext, providerValuesT } from './App';
 
 export type CityT = {
+  id: number,
   name: string,
+  location: {
+    lat: number,
+    lng: number
+  },
   weather: {
     humidity: number,
     pressure: number,
@@ -18,22 +24,36 @@ export type CityT = {
   }
 };
 
-const CityCard = ({ name, weather }: CityT) => {
-  return(
-    <$Card>
-      <$Card.main>
-        <DeleteButton />
-        <$CityName>{name}</$CityName>
-        <$Temperature>{weather.temperature.celsium}°C</$Temperature>
-        <$Clouds>{weather.clouds}</$Clouds>
-      </$Card.main>
+const CityCard = ({ id, name, weather }: CityT) => {
+  const [isUnmounting, setUnmountingState] = useState(false);
 
-      <$Card.details>
-        <WeatherDetail type='wind'     value={weather.wind}     />
-        <WeatherDetail type='humidity' value={weather.humidity} />
-        <WeatherDetail type='pressure' value={weather.pressure} />
-      </$Card.details>
-    </$Card>
+  const unmountAnimation = (removeCallback) => {
+    setUnmountingState(true);
+
+    setTimeout(() => removeCallback(id), 550);
+  };
+
+  return(
+    <AppContext.Consumer>
+      {
+        ({ removeCity }: providerValuesT) => (
+          <$Card isUnmounting={isUnmounting}>
+            <$Card.main>
+              <DeleteButton onClick={() => unmountAnimation(removeCity)} />
+              <$CityName>{name}</$CityName>
+              <$Temperature>{weather.temperature.celsium}°C</$Temperature>
+              <$Clouds>{weather.clouds}</$Clouds>
+            </$Card.main>
+      
+            <$Card.details>
+              <WeatherDetail type='wind' value={weather.wind} />
+              <WeatherDetail type='humidity' value={weather.humidity} />
+              <WeatherDetail type='pressure' value={weather.pressure} />
+            </$Card.details>
+          </$Card>
+        )
+      }
+    </AppContext.Consumer>
   );
 };
 
@@ -41,7 +61,7 @@ export default CityCard;
 
 //#region Styled components
 const $Card = styled.div`
-  ${Animations.fadeIn(0.6, 0.1)}
+  ${({ isUnmounting }) => isUnmounting ? Animations.fadeOutBottom(0.5) : Animations.fadeIn(0.6, 0.1)}
 
   position: relative;
   background: ${Color.white};

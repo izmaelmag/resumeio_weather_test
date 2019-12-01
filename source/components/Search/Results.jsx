@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import ResultCard from './ResultCard';
 import Spinner from '../Spinner'; 
 import { CityT } from '../CityCard';
-import { Font,  Color } from '../../styles';
+import { Font } from '../../styles';
 
 type SearchResultsProps = {
-  results: CityT[],
-  searchString: string
+  cities: CityT[],
+  searchText: string,
+  onSelect: () => void
 }
 
-const Results = ({ results, searchString }: SearchResultsProps) => {
+const Results = ({ cities, searchText, onSelect }: SearchResultsProps) => {
   const [isLoading, setLoadingState] = useState(true);
 
   useEffect(() => {
@@ -21,31 +22,22 @@ const Results = ({ results, searchString }: SearchResultsProps) => {
 
   if (isLoading) {
     return(
-      <$Results>
-        <Spinner />
-      </$Results>
+      <$Results> <Spinner /> </$Results>
     );
   }
 
-  if (results && results.length) {
+  if (cities && cities.length) {
     return (
       <$Results>
-        { results.map(city => <ResultCard key={city.id} city={city} />) }
+        { cities.map(city => <ResultCard key={city.id} city={city} onSelect={onSelect} />) }
       </$Results>
     );
   }
 
   return(
     <$Results>
-      <ResultCard />
-      <ResultCard />
-      <ResultCard />
-      <ResultCard />
-      <ResultCard />
-      <ResultCard />
-      <ResultCard />
-      {/* <strong>City called “{searchString}” was not found</strong>
-      <span>Try different city name</span> */}
+      <strong>City called “{searchText}” was not found</strong>
+      <span>Try different city name</span>
     </$Results>
   );
 };
@@ -59,23 +51,7 @@ const $Results = styled.div`
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  overflow: auto;
   border-radius: 8px;
-
-  scrollbar-color: ${Color.purple} ${Color.gray[300]};
-
-  ::-webkit-scrollbar {
-    width: 1px;
-    height: 100%
-  }
-
-  ::-webkit-scrollbar-track {
-    background: ${Color.gray[300]};
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: ${Color.purple};
-  }
 
   strong {
     ${Font.mark}

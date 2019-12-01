@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from "styled-css-grid";
@@ -5,31 +6,71 @@ import { Grid, Cell } from "styled-css-grid";
 import Header from './Header';
 import SearchForm from './Search';
 import CitiesList from './CitiesList';
+import { CityT } from './CityCard';
 
 import { Font, Color, Animations } from '../styles';
+import { defaultWeatherData } from '../data';
 
-const App = () => {
-  return(
-    <$Container columns={2} gap='32px' columnGap='24px'>
-      <Cell width={2}>
-        <Header />
-      </Cell>
+export const AppContext = React.createContext();
 
-      <$Cell_Title width={1}>
-        <$Title>Weather forecast</$Title>
-        <$Subtitle>Simple but powerful weather forcasting service based on OpenWeatherMap API</$Subtitle>
-      </$Cell_Title>
+export type providerValuesT = {
+  cities: CityT[],
+  removeCity: (cityId: number) => void,
+  addCity: (newCity: CityT) => void
+}
 
-      <$Cell_SearchForm width={1}>
-        <SearchForm />
-      </$Cell_SearchForm>
+class App extends React.Component {
+  state = {
+    cities: defaultWeatherData.cities
+  }
 
-      <Cell width={2}>
-        <CitiesList />
-      </Cell>
-    </$Container>
-  );
-};
+  removeCity = (cityId: number) => {
+    const cities = this.state.cities.filter(city => city.id !== cityId);
+
+    this.setState({ cities });
+  }
+
+  isCitySelected = (id) => this.state.cities.filter(city => city.id === id).length
+
+  addCity = (newCity: CityT) => {
+    if (!this.isCitySelected(newCity.id)) {
+      const cities = [...this.state.cities, newCity];
+  
+      this.setState({ cities });
+    }
+  }
+
+  render() {
+    const providerValue: providerValuesT = {
+      cities: this.state.cities,
+      removeCity: this.removeCity,
+      addCity: this.addCity
+    };
+
+    return(
+      <AppContext.Provider value={providerValue}>
+        <$Container columns={2} gap='32px' columnGap='24px'>
+          <Cell width={2}>
+            <Header />
+          </Cell>
+    
+          <$Cell_Title width={1}>
+            <$Title>Weather forecast</$Title>
+            <$Subtitle>Simple but powerful weather forcasting service based on OpenWeatherMap API</$Subtitle>
+          </$Cell_Title>
+    
+          <$Cell_SearchForm width={1}>
+            <SearchForm />
+          </$Cell_SearchForm>
+    
+          <Cell width={2}>
+            <CitiesList />
+          </Cell>
+        </$Container>
+      </AppContext.Provider>
+    );
+  }
+}
 
 export default App;
 
