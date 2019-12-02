@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Merriweather';
+  src: url('./fonts/Merriweather-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'RootBold';
+  src: url('./fonts/PTRootUIBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'RootMedium';
+  src: url('./fonts/PTRootUIMedium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Root';
+  src: url('./fonts/PTRootUIRegular.woff2') format('woff2');
+}
