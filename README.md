@@ -101,4 +101,7 @@ SVG иконки загружаются как inline svg, чтобы с ним�
 ##### Анимации
 Чтобы элемента плавно появлялись и исчезали, добавил для них анимации
 
-![Card appearance](/animations_demo/card_appear.gif)
+![Card appear](/animations_demo/card_appear.gif)
+![Card disappear](/animations_demo/card_dissppear.gif)
+![Top content](/animations_demo/header_appear.gif)
+![Search results](/animations_demo/search_results.gif)
