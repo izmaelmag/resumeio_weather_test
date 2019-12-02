@@ -1,6 +1,6 @@
 ![title](/readme_images/navbar.png)
 
-# Weather App
+# Weather App ([Посмотреть демо](https://izmaelmag.github.io/resumeio_weather_test_demo/))
 Тестовое задание для Resume.io
 
 ### Установка и запуск
